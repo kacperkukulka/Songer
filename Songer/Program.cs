@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Songer.DAL;
+using Songer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IGenresService, GenresService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

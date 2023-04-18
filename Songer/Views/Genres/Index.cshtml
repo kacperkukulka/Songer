@@ -1,0 +1,25 @@
+﻿@model Songer.ViewModels.GenresIndexVM;
+
+@{
+    ViewData["Title"] = "All Genres";
+}
+
+<h2>Genres:</h2><br/>
+<ul class="list-group">
+    <li class="list-group-item flex-column align-items-center">
+        <form asp-action="Add" class="justify-content-between input-group">
+            <input asp-for="@Model.NewGenre.Name" class="form-control"/>
+            <input type="submit" class="btn btn-outline-success input-group-text" value="Add New"/>
+        </form>
+        <span asp-validation-for="@Model.NewGenre.Name" class="text-danger"></span>
+    </li>
+    @foreach(var genre in Model.Genres) {
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+            <span>@genre.Name</span>
+            <div>
+                <a class="btn btn-outline-secondary" asp-action="Edit" style="right: 0px">Edit</a>
+                <a class="btn btn-outline-danger" asp-action="Delete" style="right: 0px">Delete</a>
+            </div>
+        </li>
+    }
+</ul>

@@ -1,5 +1,7 @@
-﻿namespace Songer.Models {
-    public class Genre {
+﻿using Songer.Base;
+
+namespace Songer.Models {
+    public class Genre : IBaseModel {
         public int Id { get; set; }
         public string Name { get; set; }
 

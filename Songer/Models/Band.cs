@@ -5,5 +5,7 @@ namespace Songer.Models {
     public class Band : Author{
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
+
+        public virtual List<Musician> Musicians { get; set; }
     }
 }
