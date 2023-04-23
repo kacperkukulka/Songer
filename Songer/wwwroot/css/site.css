@@ -1,18 +1,9 @@
-html {
-  font-size: 14px;
-}
+﻿/*! @import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
+:root {
+    --primary-blue: #4DDEF7;
 }

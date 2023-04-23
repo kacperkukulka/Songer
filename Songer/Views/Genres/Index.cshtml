@@ -7,19 +7,40 @@
 <h2>Genres:</h2><br/>
 <ul class="list-group">
     <li class="list-group-item flex-column align-items-center">
-        <form asp-action="Add" class="justify-content-between input-group">
-            <input asp-for="@Model.NewGenre.Name" class="form-control"/>
-            <input type="submit" class="btn btn-outline-success input-group-text" value="Add New"/>
+        <form asp-action="Add">
+            <div class="input-group justify-content-between">
+                <input asp-for="NewGenre.Name" name ="Name" class="form-control"/>
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn-success" value="Add"/>
+                </div>
+            </div>
+            <span class="text-danger">@TempData["ErrorAdd"]</span>
         </form>
-        <span asp-validation-for="@Model.NewGenre.Name" class="text-danger"></span>
     </li>
     @foreach(var genre in Model.Genres) {
         <li class="list-group-item d-flex align-items-center justify-content-between">
-            <span>@genre.Name</span>
-            <div>
-                <a class="btn btn-outline-secondary" asp-action="Edit" style="right: 0px">Edit</a>
-                <a class="btn btn-outline-danger" asp-action="Delete" style="right: 0px">Delete</a>
-            </div>
+            @if(genre.Id == Model.EditGenre.Id) {
+                <form asp-action="Edit" class="w-100">
+                    <div class="input-group justify-content-between">
+                        <input type="hidden" asp-for="EditGenre.Id" name="Id"/>
+                        <input asp-for="EditGenre.Name" name="Name" class="form-control" />
+                        <div class="input-group-append">
+                            <input type="submit" class="btn btn-success" value="Edit" />
+                        </div>
+                        <div class="input-group-append">
+                            <a asp-action="Index" asp-route-id="0" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </div>
+                    <span class="text-danger">@TempData["ErrorEdit"]</span>
+                </form>
+            }
+            else{
+                <span>@genre.Name</span>
+                <div>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@genre.Id" style="right: 0px">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@genre.Id" style="right: 0px">Delete</a>
+                </div>
+            }
         </li>
     }
 </ul>

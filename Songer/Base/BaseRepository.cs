@@ -22,7 +22,7 @@ namespace Songer.Base {
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().OrderByDescending(x => x.Id).ToListAsync();
 
         public async Task<T?> GetAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
 
